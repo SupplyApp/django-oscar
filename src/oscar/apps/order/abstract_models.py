@@ -18,6 +18,7 @@ from oscar.core.compat import AUTH_USER_MODEL
 from oscar.core.loading import get_model
 from oscar.core.utils import get_default_currency
 from oscar.models.fields import AutoSlugField
+from oscar.models.fields.decimal import QuantityField
 
 from . import exceptions
 
@@ -943,7 +944,7 @@ class PaymentEventQuantity(models.Model):
         on_delete=models.CASCADE,
         related_name="payment_event_quantities",
         verbose_name=_("Line"))
-    quantity = models.PositiveIntegerField(_("Quantity"))
+    quantity = QuantityField(verbose_name=_("Quantity"))
 
     class Meta:
         app_label = 'order'
@@ -1011,7 +1012,7 @@ class ShippingEventQuantity(models.Model):
         on_delete=models.CASCADE,
         related_name="shipping_event_quantities",
         verbose_name=_("Line"))
-    quantity = models.PositiveIntegerField(_("Quantity"))
+    quantity = QuantityField(verbose_name=_("Quantity"))
 
     class Meta:
         app_label = 'order'
