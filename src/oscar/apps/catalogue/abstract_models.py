@@ -1040,7 +1040,7 @@ class AbstractProductAttributeValue(models.Model):
 
     value_text = models.TextField(_('Text'), blank=True, null=True)
     value_integer = models.IntegerField(_('Integer'), blank=True, null=True, db_index=True)
-    value_boolean = models.NullBooleanField(_('Boolean'), blank=True, db_index=True)
+    value_boolean = models.BooleanField(_('Boolean'), blank=True, null=True, db_index=True)
     value_float = models.FloatField(_('Float'), blank=True, null=True, db_index=True)
     value_richtext = models.TextField(_('Richtext'), blank=True, null=True)
     value_date = models.DateField(_('Date'), blank=True, null=True, db_index=True)
@@ -1292,13 +1292,11 @@ class MissingProductImage(object):
                     "Please copy/symlink the "
                     "'missing image' image at %s into your MEDIA_ROOT at %s. "
                     "This exception was raised because Oscar was unable to "
-                    "symlink it for you.") % (media_file_path,
-                                              settings.MEDIA_ROOT))
+                    "symlink it for you.") % (static_file_path, settings.MEDIA_ROOT))
             else:
                 logging.info((
                     "Symlinked the 'missing image' image at %s into your "
-                    "MEDIA_ROOT at %s") % (media_file_path,
-                                           settings.MEDIA_ROOT))
+                    "MEDIA_ROOT at %s") % (static_file_path, settings.MEDIA_ROOT))
 
 
 class AbstractProductImage(models.Model):
